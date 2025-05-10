@@ -30,7 +30,7 @@ export class ScanComponent {
 
       if (resdata.material && resdata.beschreibung && resdata.gewicht != undefined && resdata.menge != undefined && resdata.lagerort) {
         this.dbs.addOrUpdateItem(resdata).then((res) => {
-          if (res && res.ok) {
+          if (res && res.id) {
             this.dbs.getItem(res.id).then((data) => {
               if (data) {
                 this.qrcodedata = data;

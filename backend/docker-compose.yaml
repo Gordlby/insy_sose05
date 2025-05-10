@@ -1,8 +1,7 @@
-version: "3"
-name: "sose05"
 services:
   couchdb:
     image: couchdb:3
+    container_name: couchdb
     ports:
       - "5984:5984"
     environment:
@@ -10,6 +9,13 @@ services:
       - COUCHDB_PASSWORD=gordlpassword
     volumes:
       - couchdata:/opt/couchdb/data
-    
+
+  initdb:
+    image: curlimages/curl:latest
+    depends_on:
+      - couchdb
+    entrypoint: >
+      sh -c "sleep 10 && curl -X PUT http://couchdb:5984/products -u gordladmin:gordlpassword"
+
 volumes:
   couchdata:

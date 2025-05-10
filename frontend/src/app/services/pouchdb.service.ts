@@ -14,7 +14,7 @@ export class PouchdbService {
 
   constructor() {
     this.db = new PouchDB('lagerdb');
-    this.remoteDB = new PouchDB("http://gordladmin:gordlpassword@localhost:5984/products");
+    this.remoteDB = new PouchDB("https://gordladmin:gordlpassword@insysose05db.gordlby.at/products");
 
     this.db.sync(this.remoteDB, {
       live: true,

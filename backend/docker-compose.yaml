@@ -1,8 +1,8 @@
-name: insysose05
+
+
 services:
   couchdb:
     image: couchdb:3
-    container_name: couchdb
     ports:
       - "5984:5984"
     environment:

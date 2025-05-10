@@ -1,3 +1,4 @@
+name: insysose05
 services:
   couchdb:
     image: couchdb:3

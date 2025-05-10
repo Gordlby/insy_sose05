@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BarcodeFormat } from '@zxing/library'
 import { Qrcodedata } from '../qrcodedata';
+import { PouchdbService } from '../services/pouchdb.service';
 
 @Component({
   selector: 'app-scan',
@@ -10,7 +11,7 @@ import { Qrcodedata } from '../qrcodedata';
   styleUrl: './scan.component.scss'
 })
 export class ScanComponent {
-  activescan: boolean =false;
+  activescan: boolean = false;
   BarcodeFormat = BarcodeFormat;
   datavalid: boolean = false;
   qrcodedata: Qrcodedata = {
@@ -21,13 +22,22 @@ export class ScanComponent {
     lagerort: ""
   };
 
+  constructor(private dbs: PouchdbService) { }
+
   onScanSuccess(res: string) {
     try {
       const resdata: Qrcodedata = JSON.parse(res);
 
-      if(resdata.material && resdata.beschreibung && resdata.gewicht != undefined && resdata.menge != undefined && resdata.lagerort) {
-        this.qrcodedata = resdata;
-        window.navigator.vibrate(500);
+      if (resdata.material && resdata.beschreibung && resdata.gewicht != undefined && resdata.menge != undefined && resdata.lagerort) {
+        this.dbs.addOrUpdateItem(resdata).then((res) => {
+          if (res && res.ok) {
+            this.dbs.getItem(res.id).then((data) => {
+              if (data) {
+                this.qrcodedata = data;
+              }
+            });            
+          }
+        });
         this.datavalid = true;
         this.activescan = false;
       } else {
@@ -41,6 +51,15 @@ export class ScanComponent {
   }
 
   activate() {
+    this.datavalid = false;
+    this.qrcodedata = {
+      material: "",
+      beschreibung: "",
+      gewicht: undefined,
+      menge: undefined,
+      lagerort: ""
+    };
+
     this.activescan = true;
   }
 }

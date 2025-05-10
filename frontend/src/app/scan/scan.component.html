@@ -1,6 +1,6 @@
 <div class="qrcodescanner">
     @if (activescan) {
-    <zxing-scanner class="activatescan videodiv" style="padding: 0;" previewFitMode="fill"
+    <zxing-scanner class="activatescan videodiv" style="padding: 0;" previewFitMode="cover"
         [formats]="[BarcodeFormat.QR_CODE]" [enable]="activescan" (scanSuccess)="onScanSuccess($event)"></zxing-scanner>
     } @else {
     <button class="activatescan" (click)="activate()">

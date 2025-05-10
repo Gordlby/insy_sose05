@@ -1,1 +1,37 @@
-<zxing-scanner [formats]="[BarcodeFormat.QR_CODE]" (scanSuccess)="onScanSuccess($event)"></zxing-scanner>
+<div class="qrcodescanner">
+    @if (activescan) {
+    <zxing-scanner class="activatescan videodiv" style="padding: 0;" previewFitMode="fill"
+        [formats]="[BarcodeFormat.QR_CODE]" [enable]="activescan" (scanSuccess)="onScanSuccess($event)"></zxing-scanner>
+    } @else {
+    <button class="activatescan" (click)="activate()">
+        <p class="scantext">Start Scan</p>
+    </button>
+    }
+</div>
+
+<!-- <p class="debugger">Debug:<br />• Material: {{ qrcodedata.material }}<br />• Beschreibung: {{ qrcodedata.beschreibung
+    }}<br />• Gewicht:
+    {{ qrcodedata.gewicht }}<br /> • Menge: {{ qrcodedata.menge }}<br />• Lagerort: {{ qrcodedata.lagerort }}</p> -->
+
+@if (datavalid) {
+    <div class="inputwrapper">
+        <p class="title">Material</p>
+        <p type="text" class="valuebar" name="material" id="textinput">{{ qrcodedata.material }}</p>
+    </div>
+    <div class="inputwrapper">
+        <p class="title">Beschreibung</p>
+        <p type="text" class="valuebar" name="beschreibung" id="textinput">{{ qrcodedata.beschreibung }}</p>
+    </div>
+    <div class="inputwrapper">
+        <p class="title">Gewicht</p>
+        <p type="number" class="valuebar" name="gewicht" id="textinput">{{ qrcodedata.gewicht }}</p>
+    </div>
+    <div class="inputwrapper">
+        <p class="title">Menge</p>
+        <p type="number" class="valuebar" name="menge" id="textinput">{{ qrcodedata.menge }}</p>
+    </div>
+    <div class="inputwrapper">
+        <p class="title">Lagerort</p>
+        <p type="text" class="valuebar" name="lagerort" id="textinput">{{ qrcodedata.lagerort }}</p>
+    </div>
+}

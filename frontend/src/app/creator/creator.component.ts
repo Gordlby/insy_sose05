@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostBinding, HostListener, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { QRCodeComponent } from 'angularx-qrcode'
+import { Qrcodedata } from '../qrcodedata';
 
 @Component({
   selector: 'app-creator',
@@ -9,11 +10,11 @@ import { QRCodeComponent } from 'angularx-qrcode'
   styleUrl: './creator.component.scss'
 })
 export class CreatorComponent {
-  qrcodedata = {
+  qrcodedata: Qrcodedata = {
     material: "",
     beschreibung: "",
-    gewicht: null,
-    menge: null,
+    gewicht: undefined,
+    menge: undefined,
     lagerort: ""
   }
   JSON: JSON = JSON;

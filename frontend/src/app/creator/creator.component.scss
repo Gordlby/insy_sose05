@@ -1,0 +1,67 @@
+:host(app-creator) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.inputwrapper {
+    display: flex;
+    padding: 10px 20px;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    flex-shrink: 0;
+    align-self: stretch;
+
+    .title {
+        color: #fff;
+        text-align: center;
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: normal;
+
+        margin: 0;
+    }
+
+    input {
+        flex: 1 0 0;
+        align-self: stretch;
+
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.4);
+        border: none;
+        outline: none;
+        padding: 15px 10px;
+        min-width: 100px;
+
+        color: #fff;
+        font-family: Inter;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+}
+
+.debugger {
+    display: none;
+}
+
+.qrcode-wrapper {
+    display: flex;
+    margin: 10px 10px 50px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.qrcodecontainer {
+    display: block;
+    margin: 0 auto;
+    border-radius: 30px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+}

@@ -1,0 +1,32 @@
+<div class="inputwrapper">
+    <p class="title">Material</p>
+    <input type="text" name="material" id="textinput" [(ngModel)]="qrcodedata.material">
+</div>
+<div class="inputwrapper">
+    <p class="title">Beschreibung</p>
+    <input type="text" name="beschreibung" id="textinput" [(ngModel)]="qrcodedata.beschreibung">
+</div>
+<div class="inputwrapper">
+    <p class="title">Gewicht</p>
+    <input type="number" name="gewicht" id="textinput" [(ngModel)]="qrcodedata.gewicht">
+</div>
+<div class="inputwrapper">
+    <p class="title">Menge</p>
+    <input type="number" name="menge" id="textinput" [(ngModel)]="qrcodedata.menge">
+</div>
+<div class="inputwrapper">
+    <p class="title">Lagerort</p>
+    <input type="text" name="lagerort" id="textinput" [(ngModel)]="qrcodedata.lagerort">
+</div>
+
+<p class="debugger">Debug:<br />• Material: {{ qrcodedata.material }}<br />• Beschreibung: {{ qrcodedata.beschreibung }}<br />• Gewicht:
+    {{ qrcodedata.gewicht }}<br /> • Menge: {{ qrcodedata.menge }}<br />• Lagerort: {{ qrcodedata.lagerort }}<br /><br />{{qrcodewidth}}</p>
+
+<div #qrcodeWrapper class="qrcode-wrapper">
+  <qrcode
+      class="qrcodecontainer"
+      [qrdata]="JSON.stringify(qrcodedata)"
+      [width]="qrcodewidth"
+      [errorCorrectionLevel]="'M'">
+  </qrcode>
+</div>
